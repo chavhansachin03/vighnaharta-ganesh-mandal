@@ -8,7 +8,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  
+  /* ---- Gallery video cards ---- */
+  .g-video { cursor: pointer; }
+  .g-video .g-media { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #000; }
+  .g-video .g-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .g-video .g-play {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.55); color: #fff; font-size: 22px; padding-left: 4px;
+    pointer-events: none; transition: opacity .25s;
+  }
+  .g-video.playing .g-play { opacity: 0; }
+
+  /* ---- Video popup ---- */
+  #vModal {
+    position: fixed; inset: 0; z-index: 9999; display: none;
+    align-items: center; justify-content: center; flex-direction: column;
+    background: rgba(0,0,0,.92); padding: 16px;
+  }
+  #vModal.open { display: flex; }
+  #vModal video { max-width: 100%; max-height: 82vh; border-radius: 10px; background: #000; }
+  #vModal .v-title { color: #fff; margin-top: 12px; font-size: 1.05rem; text-align: center; }
+  #vModal .v-close {
+    position: absolute; top: 14px; right: 18px; width: 42px; height: 42px;
+    border: 0; border-radius: 50%; background: rgba(255,255,255,.18);
+    color: #fff; font-size: 26px; line-height: 1; cursor: pointer;
+  }
 </style>
 </head>
 <body>
@@ -464,73 +490,80 @@
 
   <div class="gallery-flex">
 
-    <div class="g-card">
-      <div class="g-media">
-        <span class="g-tag">Photo</span>
-        <img src="https://picsum.photos/seed/ganpati1/600/450" alt="Ganpati sthapna decoration">
-      </div>
-      <div class="g-info">
-        <div class="g-title">Ganpati Sthapna &amp; Decoration</div>
-        <div class="g-date">📅 7 September 2025</div>
-      </div>
-    </div>
-
-    <div class="g-card">
+    <div class="g-card g-video" data-src="videos/aagman.mp4" data-title="Ganpati Aagman – Welcome Procession">
       <div class="g-media">
         <span class="g-tag">Video</span>
-        <video muted loop playsinline preload="metadata" poster="https://picsum.photos/seed/ganpati2/600/450" onmouseover="this.play()" onmouseout="this.pause()">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+        <video muted loop playsinline preload="metadata" src="videos/aagman.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
       </div>
       <div class="g-info">
-        <div class="g-title">Dhol-Tasha Welcome Procession</div>
-        <div class="g-date">📅 8 September 2025</div>
+        <div class="g-title">Ganpati Aagman – Welcome Procession</div>
       </div>
     </div>
 
-    <div class="g-card">
-      <div class="g-media">
-        <span class="g-tag">Photo</span>
-        <img src="https://picsum.photos/seed/ganpati3/600/450" alt="Evening aarti">
-      </div>
-      <div class="g-info">
-        <div class="g-title">Evening Aarti Gathering</div>
-        <div class="g-date">📅 10 September 2025</div>
-      </div>
-    </div>
-
-    <div class="g-card">
-      <div class="g-media">
-        <span class="g-tag">Photo</span>
-        <img src="https://picsum.photos/seed/ganpati4/600/450" alt="Cultural program">
-      </div>
-      <div class="g-info">
-        <div class="g-title">Kids' Cultural Program</div>
-        <div class="g-date">📅 13 September 2025</div>
-      </div>
-    </div>
-
-    <div class="g-card">
-      <div class="g-media">
-        <span class="g-tag">Photo</span>
-        <img src="https://picsum.photos/seed/ganpati5/600/450" alt="Prasad distribution">
-      </div>
-      <div class="g-info">
-        <div class="g-title">Community Prasad &amp; Bhandara</div>
-        <div class="g-date">📅 16 September 2025</div>
-      </div>
-    </div>
-
-    <div class="g-card">
+    <div class="g-card g-video" data-src="videos/aarti.mp4" data-title="Evening Aarti">
       <div class="g-media">
         <span class="g-tag">Video</span>
-        <video muted loop playsinline preload="metadata" poster="https://picsum.photos/seed/ganpati6/600/450" onmouseover="this.play()" onmouseout="this.pause()">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+        <video muted loop playsinline preload="metadata" src="videos/aarti.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
       </div>
       <div class="g-info">
-        <div class="g-title">Visarjan Miravnuk</div>
-        <div class="g-date">📅 17 September 2025</div>
+        <div class="g-title">Evening Aarti</div>
+      </div>
+    </div>
+
+    <div class="g-card g-video" data-src="videos/mahaprasad.mp4" data-title="Mahaprasad &amp; Bhandara">
+      <div class="g-media">
+        <span class="g-tag">Video</span>
+        <video muted loop playsinline preload="metadata" src="videos/mahaprasad.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
+      </div>
+      <div class="g-info">
+        <div class="g-title">Mahaprasad &amp; Bhandara</div>
+      </div>
+    </div>
+
+    <div class="g-card g-video" data-src="videos/miravnuk.mp4" data-title="Miravnuk – Grand Procession">
+      <div class="g-media">
+        <span class="g-tag">Video</span>
+        <video muted loop playsinline preload="metadata" src="videos/miravnuk.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
+      </div>
+      <div class="g-info">
+        <div class="g-title">Miravnuk – Grand Procession</div>
+      </div>
+    </div>
+
+    <div class="g-card g-video" data-src="videos/visarjan.mp4" data-title="Ganpati Visarjan">
+      <div class="g-media">
+        <span class="g-tag">Video</span>
+        <video muted loop playsinline preload="metadata" src="videos/visarjan.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
+      </div>
+      <div class="g-info">
+        <div class="g-title">Ganpati Visarjan</div>
+      </div>
+    </div>
+
+    <div class="g-card g-video" data-src="videos/WhatsApp_Video_2026-10-02_at_1_15_57_PM.mp4" data-title="Night Light Show &amp; Crowd">
+      <div class="g-media">
+        <span class="g-tag">Video</span>
+        <video muted loop playsinline preload="metadata" src="videos/WhatsApp_Video_2026-10-02_at_1_15_57_PM.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
+      </div>
+      <div class="g-info">
+        <div class="g-title">Night Light Show &amp; Crowd</div>
+      </div>
+    </div>
+
+    <div class="g-card g-video" data-src="videos/WhatsApp_Video_2026-10-02_at_1_16_20_PM.mp4" data-title="Management Never Fails!">
+      <div class="g-media">
+        <span class="g-tag">Video</span>
+        <video muted loop playsinline preload="metadata" src="videos/WhatsApp_Video_2026-10-02_at_1_16_20_PM.mp4#t=0.5"></video>
+        <span class="g-play" aria-hidden="true">&#9654;</span>
+      </div>
+      <div class="g-info">
+        <div class="g-title">Management Never Fails!</div>
       </div>
     </div>
 
@@ -754,8 +787,56 @@
 </section>
 
 <footer>
-  &copy; 2026 <span>Shree Vighnaharta Ganesh Mandal</span>  Designed & Developed by <a href="https://chavhansachin03.github.io/portfolio/">Sachin Chavhan</a>.
+  &copy; 2026 <span>Shree Vighnaharta Ganesh Mandal</span>  Designed & Developed by <a href="https://chavhansachin.netlify.app/">Sachin Chavhan</a>.
 </footer>
+
+<!-- Video popup -->
+<div id="vModal" aria-hidden="true">
+  <button class="v-close" id="vClose" aria-label="Close video">&times;</button>
+  <video id="vPlayer" controls playsinline></video>
+  <div class="v-title" id="vTitle"></div>
+</div>
+
+<script>
+(function () {
+  var cards  = document.querySelectorAll('.g-video');
+  var modal  = document.getElementById('vModal');
+  var player = document.getElementById('vPlayer');
+  var vTitle = document.getElementById('vTitle');
+  var canHover = window.matchMedia('(hover: hover)').matches;
+
+  function safePlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+
+  cards.forEach(function (card) {
+    var v = card.querySelector('video');
+    if (canHover) {                       // desktop: preview on hover
+      card.addEventListener('mouseenter', function () { safePlay(v); card.classList.add('playing'); });
+      card.addEventListener('mouseleave', function () { v.pause(); v.currentTime = 0.5; card.classList.remove('playing'); });
+    }
+    card.addEventListener('click', function () {   // click / tap: open full video with sound
+      v.pause(); card.classList.remove('playing');
+      player.src = card.dataset.src;
+      vTitle.textContent = card.dataset.title;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      safePlay(player);
+    });
+  });
+
+  function closeModal() {
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('vClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+})();
+</script>
 
    <script src="js/script.js"></script>
 
